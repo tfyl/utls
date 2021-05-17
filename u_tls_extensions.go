@@ -689,7 +689,7 @@ func (e *FakeChannelIDExtension) Read(b []byte) (int, error) {
 	return e.Len(), io.EOF
 }
 
-type FakeCertCompressionAlgsExtension struct {
+/**type FakeCertCompressionAlgsExtension struct {
 	Methods []CertCompressionAlgo
 }
 
@@ -725,7 +725,7 @@ func (e *FakeCertCompressionAlgsExtension) Read(b []byte) (int, error) {
 		i += 2
 	}
 	return e.Len(), io.EOF
-}
+}**/
 
 type FakeRecordSizeLimitExtension struct {
 	Limit uint16

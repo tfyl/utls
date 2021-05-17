@@ -6,8 +6,9 @@ package tls
 
 import (
 	"fmt"
-	"golang.org/x/crypto/cryptobyte"
 	"strings"
+
+	"golang.org/x/crypto/cryptobyte"
 )
 
 // The marshalingFunction type is an adapter to allow the use of ordinary
@@ -1307,6 +1308,8 @@ type certificateMsgTLS13 struct {
 	scts         bool
 }
 
+type CertificateMsgTLS13 = certificateMsgTLS13
+
 func (m *certificateMsgTLS13) marshal() []byte {
 	if m.raw != nil {
 		return m.raw
@@ -1384,6 +1387,14 @@ func (m *certificateMsgTLS13) unmarshal(data []byte) bool {
 	m.ocspStapling = m.certificate.OCSPStaple != nil
 
 	return true
+}
+
+func (m *certificateMsgTLS13) Marshal() []byte {
+	return m.marshal()
+}
+
+func (m *certificateMsgTLS13) Unmarshal(data []byte) bool {
+	return m.unmarshal(data)
 }
 
 func unmarshalCertificate(s *cryptobyte.String, certificate *Certificate) bool {
