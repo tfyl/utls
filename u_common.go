@@ -153,6 +153,7 @@ var (
 	HelloChrome_72   = ClientHelloID{helloChrome, "72", nil}
 	HelloChrome_83   = ClientHelloID{helloChrome, "83", nil}
 	HelloChrome_89   = ClientHelloID{helloChrome, "89", nil}
+	HelloChrome_96   = ClientHelloID{helloChrome, "96", nil}
 
 	HelloIOS_Auto = HelloIOS_12_1
 	HelloIOS_11_1 = ClientHelloID{helloIOS, "111", nil} // legacy "111" means 11.1

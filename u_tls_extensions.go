@@ -7,6 +7,7 @@ package tls
 import (
 	"errors"
 	"io"
+	"log"
 )
 
 type TLSExtension interface {
@@ -566,6 +567,7 @@ type PSKKeyExchangeModesExtension struct {
 }
 
 func (e *PSKKeyExchangeModesExtension) Len() int {
+	log.Println("Len", 4+1+len(e.Modes))
 	return 4 + 1 + len(e.Modes)
 }
 
@@ -590,11 +592,14 @@ func (e *PSKKeyExchangeModesExtension) Read(b []byte) (int, error) {
 		copy(b[5:], e.Modes)
 	}
 
+	log.Println("Read", e.Len())
+
 	return e.Len(), io.EOF
 }
 
 func (e *PSKKeyExchangeModesExtension) writeToUConn(uc *UConn) error {
 	uc.HandshakeState.Hello.PskModes = e.Modes
+	log.Println("write", e.Modes)
 	return nil
 }
 
